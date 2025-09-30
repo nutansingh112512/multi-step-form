@@ -59,7 +59,10 @@ function Step4() {
               </div>
               <div className="w-full border-b border-[#8794ab]"></div>
               {selectedAddOn.map((addOn) => (
-                <div key={addOn.title} className="flex justify-between items-center text-xs md:text-sm">
+                <div
+                  key={addOn.title}
+                  className="flex justify-between items-center text-xs md:text-sm"
+                >
                   <p className="text-[#8794ab]">{addOn.title}</p>
                   <p>
                     +${yearly ? `${addOn.price * 10}/yr` : `${addOn.price}/mo`}
@@ -80,6 +83,7 @@ function Step4() {
             <Button
               type="button"
               className="text-[#8794ab] hover:text-[#636f85] pl-0"
+              onClick={() => navigate(`/3`)}
             >
               Go Back
             </Button>

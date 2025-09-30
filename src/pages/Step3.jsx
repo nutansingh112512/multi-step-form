@@ -34,6 +34,7 @@ function Step3() {
 
   const handleStep3 = (e) => {
     e.preventDefault();
+    if (selectedAddOn.length === 0) alert("No AddOns have been selected.");
     dispach(updateForm({ selectedAddOn }));
     navigate(`/4`);
   };
@@ -64,6 +65,9 @@ function Step3() {
                     type="checkbox"
                     name="addOn"
                     value={addOn.title}
+                    checked={
+                      !!selectedAddOn.find((a) => a.title === addOn.title)
+                    }
                     onChange={() => toggleAddOn(addOn)}
                     className="w-4 h-4 accent-[#564fe2]"
                   />
