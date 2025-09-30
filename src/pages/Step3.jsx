@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BaseTemplate from "../components/BaseTemplate";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
@@ -37,6 +37,10 @@ function Step3() {
     dispach(updateForm({ selectedAddOn }));
     navigate(`/4`);
   };
+
+  useEffect(() => {
+    if (!state.name) navigate(`/1`);
+  }, []);
 
   return (
     <div className="">

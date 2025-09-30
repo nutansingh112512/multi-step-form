@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BaseTemplate from "../components/BaseTemplate";
 import Button from "../components/Button";
 import { SiApplearcade } from "react-icons/si";
@@ -38,14 +38,21 @@ function Step2() {
 
   const handleStep2 = (e) => {
     e.preventDefault();
-    dispach(updateForm({plan, yearly}));
+    dispach(updateForm({ plan, yearly }));
     navigate(`/3`);
-  }
+  };
+
+  useEffect(() => {
+    if (!state.name) navigate(`/1`);
+  }, []);
 
   return (
     <div className="">
       <BaseTemplate heading={heading} desc={desc} stepNo={2}>
-        <form onSubmit={handleStep2} className="flex flex-col text-[#102957] gap-10 justify-between h-full">
+        <form
+          onSubmit={handleStep2}
+          className="flex flex-col text-[#102957] gap-10 justify-between h-full"
+        >
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-3 md:gap-5 md:flex-row justify-between">
               {plans.map((p) => (
@@ -62,13 +69,17 @@ function Step2() {
                     name="plan"
                     value={p.title}
                     checked={plan.title === p.title}
-                    onChange={() => setPlan({title: p.title, price: p.price})}
+                    onChange={() => setPlan({ title: p.title, price: p.price })}
                     className="hidden"
                   />
                   <div>{p.icon}</div>
                   <div className="">
-                    <h3 className="text-[#102957] text-sm md:text-base font-bold">{p.title}</h3>
-                    <p className="text-[#8794ab] text-xs md:text-sm">${p.price}/mo</p>
+                    <h3 className="text-[#102957] text-sm md:text-base font-bold">
+                      {p.title}
+                    </h3>
+                    <p className="text-[#8794ab] text-xs md:text-sm">
+                      ${p.price}/mo
+                    </p>
                   </div>
                 </label>
               ))}
@@ -103,7 +114,13 @@ function Step2() {
             </div>
           </div>
           <div className="flex justify-between fixed md:static bottom-0 place-self-end bg-white w-full left-0 mt-5 px-4 md:px-0 py-3">
-            <Button onClick={() => navigate(`/1`)} type="button" className="text-[#8794ab] hover:text-[#636f85] pl-0">Go Back</Button>
+            <Button
+              onClick={() => navigate(`/1`)}
+              type="button"
+              className="text-[#8794ab] hover:text-[#636f85] pl-0"
+            >
+              Go Back
+            </Button>
             <Button className="bg-[#102957] text-white rounded ">
               Next Step
             </Button>

@@ -24,10 +24,7 @@ function Step1() {
 
   const handleStep1 = (e) => {
     e.preventDefault();
-    if (!validatePhone(phone)) {
-      alert("Please enter valid phone number");
-      return;
-    }
+    if (phone.length < 10 && phone.length > 15) alert("Please enter a valid mobile number.");
     dispach(updateForm({ name, email, phone }));
     navigate(`/2`);
   };
@@ -69,11 +66,14 @@ function Step1() {
               required
               value={phone}
               onChange={(e) => {
-                if(validatePhone(e.target.value)) 
-                  {setPhone(e.target.value);}
+                if (validatePhone(e.target.value)) {
+                  setPhone(e.target.value);
+                }
               }}
               placeholder="e.g. +91 2234156970"
-              className="border-[#bfc6d2cf] border rounded px-3 py-2 focus:outline-none mb-5  "
+              className={`border-[#bfc6d2cf] border rounded px-3 py-2 focus:outline-none mb-5 focus:shadow ${
+                (phone.length>=10 && phone.length <=15) ? "shadow-green-400" : "shadow-red-400"
+              }`}
             />
           </div>
           <div className="flex justify-between fixed md:static bottom-0 place-self-end bg-white w-full left-0 px-4 md:px-0 py-3">

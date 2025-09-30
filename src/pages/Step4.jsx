@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateForm } from "../store/formSlice";
+import { useEffect } from "react";
 
 function Step4() {
   const heading = "Finishing up";
@@ -33,6 +34,10 @@ function Step4() {
     navigate(`/1`);
   };
 
+  useEffect(() => {
+    if (!state.name) navigate(`/1`);
+  }, []);
+
   return (
     <div className="">
       <BaseTemplate heading={heading} desc={desc} stepNo={4}>
@@ -54,7 +59,7 @@ function Step4() {
               </div>
               <div className="w-full border-b border-[#8794ab]"></div>
               {selectedAddOn.map((addOn) => (
-                <div className="flex justify-between items-center text-xs md:text-sm">
+                <div key={addOn.title} className="flex justify-between items-center text-xs md:text-sm">
                   <p className="text-[#8794ab]">{addOn.title}</p>
                   <p>
                     +${yearly ? `${addOn.price * 10}/yr` : `${addOn.price}/mo`}

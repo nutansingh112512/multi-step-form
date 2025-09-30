@@ -15,7 +15,6 @@ const formSlice = createSlice({
   },
   reducers: {
     updateForm(state, action) {
-      console.log(state);
       return { ...state, ...action.payload };
     },
   },
