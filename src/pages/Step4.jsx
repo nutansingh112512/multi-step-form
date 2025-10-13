@@ -17,7 +17,13 @@ function Step4() {
     plan.price + selectedAddOn.reduce((total, addOn) => total + addOn.price, 0);
 
   const handleConfirmation = () => {
-    alert("Form submitted successfully!");
+    alert(
+      `Form submitted successfully!\nName: ${state.name}\nEmail: ${
+        state.email
+      }\nPhone: ${state.phone}\nPlan: ${state.plan.title}(${
+        state.yearly ? "Yearly" : "Monthly"
+      })\nAddons: ${state.selectedAddOn.map((a) => a.title)}`
+    );
     dispach(
       updateForm({
         name: "",
